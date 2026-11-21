@@ -12,10 +12,11 @@ repository visibility, or modify the private publisher repository.
 
 ## Run without the setup conversation
 
-1. Use GitHub `fetch` for these current files on `main`:
-   - `https://api.github.com/repos/spiritualkidsvideos/dharmatalesjunior/contents/website-data/sync_catalog.py?ref=main`
-   - `https://api.github.com/repos/spiritualkidsvideos/dharmatalesjunior/contents/website-data/catalog.json?ref=main`
-   Decode GitHub's base64 `content`, and retain the catalog's current blob `sha`.
+1. Use GitHub `fetch_file` with repository_full_name
+   `spiritualkidsvideos/dharmatalesjunior`, ref `main`, and encoding `utf-8` for:
+   - path `website-data/sync_catalog.py`
+   - path `website-data/catalog.json`
+   Use the returned complete UTF-8 `content` and retain the catalog's blob `sha`.
    The connection must permit reading these exact files and updating only the
    catalog. Do not print any credentials.
 2. Write the fetched script and catalog in the current execution environment's
@@ -33,7 +34,7 @@ repository visibility, or modify the private publisher repository.
    `Refresh public website video catalog`. No other path needs a write.
    If another writer changed it, refetch the current catalog and rerun the merge
    once. Never force-push, clear the file, or overwrite a conflict blindly.
-5. Read the catalog back through GitHub. Verify its channelId, checkedAt,
+5. Read the catalog back through GitHub `fetch_file`. Verify its channelId, checkedAt,
    video IDs, and count agree with the successful output. The anonymous URL is
    `https://raw.githubusercontent.com/spiritualkidsvideos/dharmatalesjunior/main/website-data/catalog.json`.
    Raw content can take several minutes to refresh in caches; a matching blob
