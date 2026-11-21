@@ -6,6 +6,16 @@ Its reviewed static catalog is a fallback. Its live catalog is the public file
 `spiritualkidsvideos/dharmatalesjunior`. The website fetches this file on load
 and every five minutes while open. Updating this data requires no Site deploy.
 
+## Automatic schedule
+
+The catalog sync is part of the existing daily Dharma Tales routine at
+8:00 a.m. America/New_York. It uses the existing GitHub connection to update
+only `website-data/catalog.json`; it creates no GitHub Actions workflow,
+repository-wide workflow token, new secret, paid API, or extra subscription.
+The manual recovery procedure below is also the unattended update procedure.
+Keep every other repository path unchanged. An update failure must preserve
+the previous public catalog and must not block the routine's other work.
+
 Use only public YouTube metadata and the existing GitHub app connection. Do not
 enable billing, add a paid service, call credit-consuming vidIQ tools, change
 repository visibility, or modify the private publisher repository.
